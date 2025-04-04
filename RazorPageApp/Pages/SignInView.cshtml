@@ -1,0 +1,13 @@
+﻿@page
+@model RazorPageApp.Pages.SignInViewModel
+@{
+}
+<h1>Log in or Sign up</h1>
+<form>
+	<label for="uName">Username:</label><br />
+	<input type ="text" id="uName" name="uName" value="Type Username here" /><br />
+	<label for="pWord">Password:</label><br />
+	<input type="text" id="pWord" name="pWord"/><br /><br />
+	<input type="submit" value="Log in" />
+	<a href="~/RegisterView/"><input type="button" value="Sign up" /></a>
+</form>

@@ -1,0 +1,10 @@
+﻿@page "{id?}"
+@model RazorPageApp.Pages.ProductViewModel
+@{
+
+}
+<h1>@Model.Product.Name's id is @Model.Product.Id</h1>
+<div class="ProductImage">
+	<img src="~/images/@Model.Product.ImageURL" />
+</div>
+

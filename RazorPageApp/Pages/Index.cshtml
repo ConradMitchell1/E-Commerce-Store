@@ -3,17 +3,72 @@
 @{
     ViewData["Title"] = "Home page";
 }
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css">
+<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
 <div class="text-center">
     <h1 class="display-4"><i>Welcome to Conrad's E-Commerce store!</i></h1>
 </div>
 <div class="text-center">
     <h2>Shop our <strong>amazing</strong> deals here!</h2>
 </div>
-<div id="myCaraousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="caraousel-indicators">
-        <li data-target="#myCaraousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCaraousel" data-slide-to="1" class="active"></li>
-        <li data-target="#myCaraousel" data-slide-to="2" class="active"></li>
-    </ol>
+
+<!-- Carousel -->
+@section FullWidthSection{
+    <div class="carousel-background">
+
+        <div class="carousel-container">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/images/Plug.jpg" width="600" height="400" alt="Apples" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/images/Phone.jpg" width="600" height="400" alt="Golden Buns" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/images/Headphones.jpg" width="600" height="400" alt="Sausage Rolls" />
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+}
+
+
+<!-- Carousel -->
+<div class="text-center">
+    <h2> See our great products below! </h2>
+</div>
+
+<!-- Products -->
+<div class="image-grid">
+
+    @foreach (var product in Model.Products.Take(6))
+    {
+        <a href="~/ProductView/@product.Id">
+            <img src ="~/images/@product.ImageURL" alt="@product.Name"/>
+        </a>
+    }
+
+    
 </div>
