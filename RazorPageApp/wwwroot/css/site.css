@@ -19,7 +19,7 @@ body {
 .text-center h2{
     padding:20px;
 }
-
+/*------ Index Page -------*/
 .carousel-container {
     max-width: 900px;
     
@@ -88,3 +88,11 @@ body {
     object-fit: contain;
     display:block;
 }
+
+/*-------------*/
+
+/*------ SignIn Page -------*/
+
+form  { display: table;      }
+label { display: table-cell; }
+input { display: table-cell; }

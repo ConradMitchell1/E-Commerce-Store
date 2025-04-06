@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using RazorPageApp.Models;
 
 namespace RazorPageApp.Repositories
@@ -15,7 +16,6 @@ namespace RazorPageApp.Repositories
         public DbSet<OrderItemModel> OrderItems { get; set; }
         public DbSet<OrderModel> OrderModels { get; set; }
         public DbSet<ShippingAddressModel> ShippingAddresses { get; set; }
-        public DbSet<UserModel> Users { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,6 @@ namespace RazorPageApp.Repositories
             modelBuilder.Entity<OrderItemModel>().ToTable("OrderItem");
             modelBuilder.Entity<OrderModel>().ToTable("Order");
             modelBuilder.Entity<ShippingAddressModel>().ToTable("ShippingAddress");
-            modelBuilder.Entity<UserModel>().ToTable("User");
 
         }
     }

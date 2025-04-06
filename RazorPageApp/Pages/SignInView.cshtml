@@ -3,11 +3,23 @@
 @{
 }
 <h1>Log in or Sign up</h1>
-<form>
-	<label for="uName">Username:</label><br />
-	<input type ="text" id="uName" name="uName" value="Type Username here" /><br />
-	<label for="pWord">Password:</label><br />
-	<input type="text" id="pWord" name="pWord"/><br /><br />
-	<input type="submit" value="Log in" />
-	<a href="~/RegisterView/"><input type="button" value="Sign up" /></a>
+<form method="post" class="SignInForm">
+    <div>
+        <label asp-for="Input.Username"></label>
+        <input asp-for="Input.Username"/>
+        <span asp-validation-for="Input.Username"></span>
+    </div>
+
+    <div>
+        <label asp-for="Input.Password"></label>
+        <input asp-for="Input.Password"/>
+        <span asp-validation-for="Input.Password"></span>
+    </div>
+
+    <button type="submit"> Submit</button>
+    <button type="button" onclick="location.href='@Url.Content("~/RegisterView/")'">Register</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

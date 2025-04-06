@@ -1,5 +1,5 @@
-
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RazorPageApp.Repositories;
 
@@ -12,8 +12,9 @@ namespace RazorPageApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddRazorPages();
             builder.Services.AddDbContext<ProductContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.Configure<RouteOptions>(o =>
             {
@@ -21,7 +22,13 @@ namespace RazorPageApp
                 o.LowercaseQueryStrings = true;
                 o.AppendTrailingSlash = true;
             });
-
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            builder.Services.AddRazorPages();
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope()) 
@@ -52,7 +59,7 @@ namespace RazorPageApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();
